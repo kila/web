@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head><title>twitter update</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+</head>
+
+<body>
+<h1>tweets</h1>
+<ul id="tweets"> </ul>
+<script>
+  function onData(data) {
+    $.each(data, function(i, item) {
+	    var el = $('<li></li>');
+            el.html(item.text);
+            $("#tweets").append(el);
+    });
+  }
+
+  $(document).ready(function(){
+    var tweeturl = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=CptThunderbeard&callback=onData";
+    $.getScript(tweeturl);
+  });
+</script>
+
+</body>
+</html>
